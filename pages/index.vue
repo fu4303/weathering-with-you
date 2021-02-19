@@ -58,6 +58,7 @@ onMounted(() => {
             <mdi-twitter class="text-2xl" />
           </a>
           <span class="flex-1"></span>
+          <a href="https://github.com/jacobclevenger/wheatjs.me" target="_blank">View on Github</a>
           <router-link to="/blog">Blog</router-link>
         </div>
       </div>
