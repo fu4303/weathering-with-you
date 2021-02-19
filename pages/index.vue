@@ -112,8 +112,3 @@ onMounted(() => {
     @apply absolute top-0;
   }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
