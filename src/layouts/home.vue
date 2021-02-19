@@ -32,7 +32,7 @@ onMounted(() => {
     <Rain />
 
     <!-- Sky -->
-    <div class="grid h-screen p-12 bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
+    <div class="grid h-screen bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
       <div class="w-full p-8 max-w-prose">
         <h1 ref="text" class="h-12 text-5xl"></h1>
         <span class="block mt-2 text-2xl">I'm Jacob</span>
