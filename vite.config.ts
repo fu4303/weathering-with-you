@@ -67,6 +67,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-windicss
     ...WindiCSS({
       safelist: 'prose prose-sm m-auto',
+      searchDirs: ['src', 'pages'],
     }),
 
     // https://github.com/antfu/vite-plugin-pwa
