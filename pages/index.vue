@@ -51,7 +51,7 @@ onMounted(() => {
           <About />
         </div>
         <div class="flex flex-row items-center mt-8 space-x-4">
-          <a href="https://github.com/github" target="_blank">
+          <a href="https://github.com/jacobclevenger" target="_blank">
             <mdi-github class="text-2xl" />
           </a>
           <a href="https://twitter.com/wheatjs" target="_blank">
