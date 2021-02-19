@@ -5,6 +5,7 @@ dependencies:
   nprogress: 0.2.0
   prism-theme-vars: 0.1.4
   rellax: 1.12.1
+  typed.js: 2.0.11
   vue: 3.0.5
   vue-i18n: 9.0.0-rc.7_vue@3.0.5
   vue-router: 4.0.3_vue@3.0.5
@@ -5059,6 +5060,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
+  /typed.js/2.0.11:
+    dev: false
+    resolution:
+      integrity: sha512-1ZORHalEyLob34q738mqmwp0pT6syMigB1SZuTItqdhovWBKFIt7I5uVALXAGQZCg2MCtihCt6uqkoqPJK+9iQ==
   /typescript/4.1.5:
     dev: true
     engines:
@@ -5720,6 +5725,7 @@ specifiers:
   pnpm: ^5.17.2
   prism-theme-vars: ^0.1.4
   rellax: ^1.12.1
+  typed.js: ^2.0.11
   typescript: ^4.1.5
   vite: ^2.0.0-beta.70
   vite-plugin-components: ^0.6.10

@@ -1,0 +1,3 @@
+I'm a software developer, EE student, and cooking enthusiast! I am currently working on several projects, [Codebyte](https://codebyte.cafe), [Kro UI](https://github.com/black-kro/kro-ui), this site, and some other secret projects! I'm very interseted in the Vue ecosystem and have recently found myself a big fan of [Vite](https://github.com/vitejs/vite). In fact this site was built on top both Vue and Vite using [Vitesse](https://github.com/antfu/vitesse).
+
+ This sites design was heavily inspiried by the end credits of [Weathering With You](https://www.youtube.com/watch?v=7Sypn388G7M), so if you have a couple minutes to spare, scroll down and enjoy the adventure!

@@ -1,23 +1,56 @@
 <script setup lang="ts">
-import { onMounted, defineEmit } from 'vue'
+import { onMounted, ref } from 'vue'
 import Rellax from 'rellax'
+import Typed from 'typed.js'
 
-defineEmit()
+const text = ref()
 
 onMounted(() => {
   Rellax('.skyline', {
     center: true,
   })
+
+  if (text.value) {
+    // eslint-disable-next-line
+    new Typed(text.value as string, {
+      strings: ['Hello,', 'Hola,', 'こんにちは,', '你好,', '안녕하세요,', 'Salut,', 'Ciao,', 'नमस्कार,', 'Hallo,', 'Hej,'],
+      typeSpeed: 150,
+      backSpeed: 100,
+      loop: true,
+      showCursor: false,
+      smartBackspace: false,
+      backDelay: 2500,
+    })
+  }
 })
 
 </script>
 
 <template>
   <main class="">
+    <Navigation />
     <Rain />
 
     <!-- Sky -->
-    <div class="h-screen bg-gradient-to-b from-wwy-100 to-wwy-200" />
+    <div class="grid h-screen p-12 bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
+      <div class="w-full p-8 max-w-prose">
+        <h1 ref="text" class="h-12 text-5xl"></h1>
+        <span class="block mt-2 text-2xl">I'm Jacob</span>
+        <div class="py-2">
+          <About />
+        </div>
+        <div class="flex flex-row items-center mt-8 space-x-4">
+          <a href="https://github.com/github" target="_blank">
+            <mdi-github class="text-2xl" />
+          </a>
+          <a href="https://twitter.com/wheatjs" target="_blank">
+            <mdi-twitter class="text-2xl" />
+          </a>
+          <span class="flex-1"></span>
+          <router-link to="/blog">Blog</router-link>
+        </div>
+      </div>
+    </div>
 
     <!-- Clouds -->
     <div class="h-screen bg-gradient-to-b from-wwy-200 to-wwy-300" />
