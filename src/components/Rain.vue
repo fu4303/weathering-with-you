@@ -1,19 +1,12 @@
 <script setup='props' lang='ts'>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { createRain } from '~/logics/rain'
 
 const el = ref()
 
-onMounted(() => {
-  if (el.value) {
-    // const ctx = el.value.getContext('2d')
-
-    createRain(el.value)
-  }
-})
-
+createRain(el)
 </script>
 
 <template>
-  <canvas class="fixed inset-0 bg-transparent pointer-events-none" style="z-index: 50000;" width="400" height="400" ref="el"></canvas>
+  <canvas ref="el" class="fixed inset-0 bg-transparent pointer-events-none" style="z-index: 50000;" width="400" height="400" />
 </template>
