@@ -8,16 +8,16 @@ export function createRain(stage: any) {
   const WIND_VELOCITY = 0 // Determines how slanted the rain drops fall, 0 = straight down
 
   // Drop settings
-  const DROP_COUNT = 50 // Adjust for more/less rain drops
-  const DROP_WIDTH = 2.5 // Increase for thicker rain
+  const DROP_COUNT = 75 // Adjust for more/less rain drops
+  const DROP_WIDTH = [.5, 3] // Increase for thicker rain
   const DROP_X_BUFFER = 50 // How far to the sides of the screen drops will spawn
-  const DROP_COLOR = '#546262'
+  const DROP_COLOR = 'white'
   const DROP_MIN_VELOCITY = 0.8
   const DROP_MAX_VELOCITY = 1.2
   const DROP_MIN_LENGTH = 50
   const DROP_MAX_LENGTH = 90
-  const DROP_MIN_ALPHA = 0.3
-  const DROP_MAX_ALPHA = 0.7
+  const DROP_MIN_ALPHA = 0.05
+  const DROP_MAX_ALPHA = 0.15
 
   // Math helpers
   const math = {
@@ -36,6 +36,9 @@ export function createRain(stage: any) {
     normalizeVector(v: any) {
       const m = Math.sqrt(v.x * v.x + v.y * v.y)
       math.scaleVector(v, 1 / m)
+    },
+    between(min: number, max: number) {
+      return +(((Math.random() * (max - min)) + min).toFixed(2))
     },
   }
 
@@ -88,7 +91,7 @@ export function createRain(stage: any) {
   const renderDrops = function(ctx: any) {
     ctx.save()
     ctx.strokeStyle = DROP_COLOR
-    ctx.lineWidth = DROP_WIDTH
+    ctx.lineWidth = math.between(DROP_WIDTH[0], DROP_WIDTH[1])
     ctx.compositeOperation = 'lighter'
 
     for (let i = 0; i < drops.length; ++i) {

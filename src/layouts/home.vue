@@ -1,12 +1,23 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
 import Rellax from 'rellax'
 import Typed from 'typed.js'
 
 const text = ref()
+const isSkyVisible = ref(false)
+const sky = ref()
+
+useIntersectionObserver(sky, ([{ isIntersecting }], ob) => {
+  isSkyVisible.value = isIntersecting
+})
 
 onMounted(() => {
   Rellax('.skyline', {
+    center: true,
+  })
+
+  Rellax('.clouds', {
     center: true,
   })
 
@@ -29,10 +40,10 @@ onMounted(() => {
 <template>
   <main class="">
     <Navigation />
-    <Rain />
+    <Rain :class="{ 'opacity-0': isSkyVisible }" class="transition-opacity duration-500" />
 
     <!-- Sky -->
-    <div class="grid h-screen bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
+    <div ref="sky" class="grid h-screen bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
       <div class="w-full p-8 max-w-prose">
         <h1 ref="text" class="h-12 text-5xl"></h1>
         <span class="block mt-2 text-2xl">I'm Jacob</span>
@@ -53,9 +64,21 @@ onMounted(() => {
     </div>
 
     <!-- Clouds -->
-    <div class="h-screen bg-gradient-to-b from-wwy-200 to-wwy-300" />
+    <div class="h-screen bg-gradient-to-b from-wwy-200 to-wwy-200" />
+    <div class="h-screen bg-gradient-to-b from-wwy-200 to-wwy-250" />
+    <div class="h-screen bg-gradient-to-b from-wwy-250 to-wwy-275" />
 
-    <div class="h-screen bg-gradient-to-b from-wwy-300 to-wwy-400" />
+    <div class="relative h-screen overflow-hidden bg-gradient-to-b from-wwy-350 to-wwy-375">
+      <img src="/images/cloud-7.svg" data-rellax-speed="-3" class="opacity-50 clouds">
+      <img src="/images/cloud-6.svg" data-rellax-speed="-2.75" class="opacity-50 clouds">
+      <img src="/images/cloud-5.svg" data-rellax-speed="-2.5" class="opacity-50 clouds">
+      <img src="/images/cloud-4.svg" data-rellax-speed="-2" class="clouds">
+      <img src="/images/cloud-3.svg" data-rellax-speed="-1.5" class="clouds">
+      <img src="/images/cloud-2.svg" data-rellax-speed="-1" class="clouds">
+      <img src="/images/cloud-1.svg" class="absolute -top-1">
+    </div>
+
+    <div class="h-screen bg-gradient-to-b from-wwy-375 to-wwy-400" />
 
     <!-- City -->
     <div class="relative h-screen bg-gradient-to-b from-wwy-400 to-wwy-500 city">
@@ -83,6 +106,10 @@ onMounted(() => {
 <style lang="postcss">
   .skyline {
     @apply absolute bottom-0;
+  }
+
+  .clouds {
+    @apply absolute top-0;
   }
 
 </style>
