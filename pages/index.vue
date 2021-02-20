@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { onMounted, computed, ref } from 'vue'
-import { useIntersectionObserver, useWindowScroll } from '@vueuse/core'
+import { useWindowScroll } from '@vueuse/core'
 import Rellax from 'rellax'
 import Typed from 'typed.js'
 
 const text = ref()
-const isSkyVisible = ref(false)
 const cloudsEnd = ref()
 
 const { y } = useWindowScroll()
@@ -44,7 +43,6 @@ onMounted(() => {
 <template>
   <main class="">
     <Navigation />
-    <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000" />
 
     <!-- Sky -->
     <div class="relative grid h-screen overflow-hidden bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
@@ -68,13 +66,16 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
+      <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000" />
       <img src="/images/sky-cloud-1.svg" data-rellax-speed="-1" class="absolute bottom-0 parallax">
+      <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000" />
       <img src="/images/sky-cloud-2.svg" class="absolute -bottom-1">
 
       <div class="absolute opacity-50 bottom-12">
         <ic-outline-keyboard-arrow-down class="text-4xl" />
       </div>
     </div>
+    <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000 z-100" />
 
     <!-- Clouds -->
     <div class="relative z-10 h-screen bg-gradient-to-b from-wwy-200 to-wwy-200" />
