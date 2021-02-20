@@ -24,13 +24,14 @@ interface Ripple {
   height: number
   x: number
   y: number
+  distance: number
 }
 
 const DEFAULT_OPTIONS: RippleOptions = {
   count: 25,
   thickness: 2,
   color: 'white',
-  rotation: 5,
+  rotation: 8,
   fadeDuration: [300, 350],
   rippleDuration: [1000, 3500],
   rippleSize: [50, 250],
@@ -49,13 +50,13 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
   }
 
   const resetRipple = (ripple: Partial<Ripple>) => {
-    ripple.y = randomInt(height.value / 2, height.value)
+    ripple.y = randomInt(height.value / 5, height.value)
     ripple.x = randomInt(-50, width.value + 50)
 
-    const distance = ripple.y / height.value
+    ripple.distance = ripple.y / height.value
 
-    ripple.maxSize = randomInt(options.rippleSize[0], options.rippleSize[1]) * distance
-    ripple.initialAlpha = between(0.3, 0.8) * distance
+    ripple.maxSize = randomInt(options.rippleSize[0], options.rippleSize[1]) * ripple.distance
+    ripple.initialAlpha = between(0.3, 0.8) * ripple.distance
     ripple.alpha = 0
     ripple.duration = randomInt(options.rippleDuration[0], options.rippleDuration[1])
     ripple.fadeDuration = randomInt(options.fadeDuration[0], options.fadeDuration[1])
@@ -80,7 +81,7 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
         const ripple = ripples[i]
 
         const childRippleWidth = Math.max(0, ripple.width - 50)
-        const childRippleHeight = Math.max(0, ripple.height - (50 / options.rotation))
+        const childRippleHeight = Math.max(0, ripple.height * ripple.distance - (50 / options.rotation))
 
         ctx.globalAlpha = ripple.initialAlpha - ripple.alpha
 
@@ -93,7 +94,7 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
         // ctx.closePath()
 
         ctx.beginPath()
-        ctx.ellipse(ripple.x, ripple.y, Math.abs(ripple.height), Math.abs(ripple.width), Math.PI / 2, 0, 2 * Math.PI)
+        ctx.ellipse(ripple.x, ripple.y, Math.abs(ripple.height * ripple.distance), Math.abs(ripple.width), Math.PI / 2, 0, 2 * Math.PI)
         ctx.stroke()
         ctx.closePath()
 
