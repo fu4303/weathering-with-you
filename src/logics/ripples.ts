@@ -70,6 +70,7 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
       ctx.clearRect(0, 0, width.value, height.value)
       ctx.save()
       ctx.strokeStyle = options.color
+      ctx.fillStyle = options.color
       ctx.lineWidth = options.thickness
       // @ts-ignore
       ctx.compositeOperation = 'lighter'
@@ -82,13 +83,22 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
         const childRippleHeight = Math.max(0, ripple.height - (50 / options.rotation))
 
         ctx.globalAlpha = ripple.initialAlpha - ripple.alpha
+
+        /**
+         * Would like to generate splash effect here eventually
+         */
+        // ctx.beginPath()
+        // ctx.ellipse(ripple.x, ripple.y, 5, 5, Math.PI / 2, 0, 2 * Math.PI)
+        // ctx.fill()
+        // ctx.closePath()
+
         ctx.beginPath()
-        ctx.ellipse(ripple.x, ripple.y, ripple.height, ripple.width, Math.PI / 2, 0, 2 * Math.PI)
+        ctx.ellipse(ripple.x, ripple.y, Math.abs(ripple.height), Math.abs(ripple.width), Math.PI / 2, 0, 2 * Math.PI)
         ctx.stroke()
         ctx.closePath()
 
         ctx.beginPath()
-        ctx.ellipse(ripple.x, ripple.y, childRippleHeight, childRippleWidth, Math.PI / 2, 0, 2 * Math.PI)
+        ctx.ellipse(ripple.x, ripple.y, Math.abs(childRippleHeight), Math.abs(childRippleWidth), Math.PI / 2, 0, 2 * Math.PI)
         ctx.stroke()
         ctx.closePath()
       }

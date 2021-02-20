@@ -21,12 +21,12 @@ interface Drop {
 }
 
 const DEFAULT_OPTIONS: RainOptions = {
-  count: 75,
+  count: 150,
   thickness: [0.5, 3],
   color: 'white',
   velocity: [0.8, 1.2],
-  length: [50, 90],
-  alpha: [0.05, 0.15],
+  length: [50, 150],
+  alpha: [0.025, 0.15],
 }
 
 export function createRain(canvas: Ref<HTMLCanvasElement>, options: RainOptions = DEFAULT_OPTIONS) {
