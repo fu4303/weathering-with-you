@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         wwy: {
+          50: '#8F71A2',
           100: '#4E3B5A',
           200: '#262B3E',
           250: '#423838',

@@ -3,6 +3,7 @@ dependencies:
   '@types/scroll-to-element': 2.0.0
   '@vueuse/core': 4.1.1_vue@3.0.5
   '@vueuse/head': 0.2.3_vue@3.0.5
+  dayjs: 1.10.4
   nprogress: 0.2.0
   prism-theme-vars: 0.1.4
   rellax: 1.12.1
@@ -15,6 +16,7 @@ devDependencies:
   '@antfu/eslint-config': 0.4.3_eslint@7.20.0+typescript@4.1.5
   '@iconify/json': 1.1.303
   '@intlify/vite-plugin-vue-i18n': 1.0.0-beta.17
+  '@types/fs-extra': 9.0.7
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 4.15.1_eslint@7.20.0+typescript@4.1.5
   '@vitejs/plugin-vue': 1.1.4_@vue+compiler-sfc@3.0.5
@@ -22,6 +24,7 @@ devDependencies:
   '@vue/server-renderer': 3.0.5_vue@3.0.5
   cross-env: 7.0.3
   eslint: 7.20.0
+  fs-extra: 9.1.0
   markdown-it-anchor: 7.0.2
   markdown-it-prism: 2.1.4
   pnpm: 5.17.2
@@ -1352,6 +1355,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
+  /@types/fs-extra/9.0.7:
+    dependencies:
+      '@types/node': 14.14.31
+    dev: true
+    resolution:
+      integrity: sha512-YGq2A6Yc3bldrLUlm17VNWOnUbnEzJ9CMgOeLFtQF3HOCN5lQBO8VyjG00a5acA5NNSM30kHVGp1trZgnVgi1Q==
   /@types/json-schema/7.0.7:
     dev: true
     resolution:
@@ -1364,6 +1373,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
+  /@types/node/14.14.31:
+    dev: true
+    resolution:
+      integrity: sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -2214,6 +2227,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-X5eWTSXO/BJmpdIKCRuKUgSCgAN0OwliVK3yPKbwIWU1Tdw5BRajxlzMidvh+gwko9AfQ9zIj52pzF91Q3YAvQ==
+  /dayjs/1.10.4:
+    dev: false
+    resolution:
+      integrity: sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -2970,7 +2987,7 @@ packages:
   /fs-extra/9.1.0:
     dependencies:
       at-least-node: 1.0.0
-      graceful-fs: 4.2.4
+      graceful-fs: 4.2.6
       jsonfile: 6.1.0
       universalify: 2.0.0
     dev: true
@@ -3114,6 +3131,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+  /graceful-fs/4.2.6:
+    dev: true
+    resolution:
+      integrity: sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
   /gray-matter/4.0.2:
     dependencies:
       js-yaml: 3.14.1
@@ -3634,7 +3655,7 @@ packages:
       universalify: 2.0.0
     dev: true
     optionalDependencies:
-      graceful-fs: 4.2.4
+      graceful-fs: 4.2.6
     resolution:
       integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==
   /jsprim/1.4.1:
@@ -5726,6 +5747,7 @@ specifiers:
   '@antfu/eslint-config': ^0.4.3
   '@iconify/json': ^1.1.303
   '@intlify/vite-plugin-vue-i18n': ^1.0.0-beta.17
+  '@types/fs-extra': ^9.0.7
   '@types/nprogress': ^0.2.0
   '@types/rellax': ^1.7.3
   '@types/scroll-to-element': ^2.0.0
@@ -5736,7 +5758,9 @@ specifiers:
   '@vueuse/core': ^4.1.1
   '@vueuse/head': ^0.2.3
   cross-env: ^7.0.3
+  dayjs: ^1.10.4
   eslint: ^7.20.0
+  fs-extra: ^9.1.0
   markdown-it-anchor: ^7.0.2
   markdown-it-prism: ^2.1.4
   nprogress: ^0.2.0

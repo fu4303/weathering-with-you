@@ -28,7 +28,7 @@ interface Ripple {
 }
 
 const DEFAULT_OPTIONS: RippleOptions = {
-  count: 25,
+  count: 50,
   thickness: 2,
   color: 'white',
   rotation: 8,
@@ -50,7 +50,7 @@ export function createRipples(canvas: Ref<HTMLCanvasElement>, options: RippleOpt
   }
 
   const resetRipple = (ripple: Partial<Ripple>) => {
-    ripple.y = randomInt(height.value / 5, height.value)
+    ripple.y = randomInt(0, height.value)
     ripple.x = randomInt(-50, width.value + 50)
 
     ripple.distance = ripple.y / height.value

@@ -6,13 +6,22 @@ import Typed from 'typed.js'
 
 const text = ref()
 const cloudsEnd = ref()
+const trees = ref()
 
 const { y } = useWindowScroll()
 
 const isBelowClouds = computed(() => {
   if (cloudsEnd.value) {
-    console.log(y.value, cloudsEnd.value.offsetTop)
     if (y.value > cloudsEnd.value.offsetTop)
+      return true
+  }
+
+  return false
+})
+
+const isBelowTrees = computed(() => {
+  if (trees.value) {
+    if (y.value > trees.value.offsetTop)
       return true
   }
 
@@ -45,7 +54,7 @@ onMounted(() => {
     <Navigation />
 
     <!-- Sky -->
-    <div class="relative grid h-screen overflow-hidden bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
+    <div class="relative z-10 grid h-screen overflow-hidden bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
       <div class="relative z-10 w-full p-8 max-w-prose">
         <h1 ref="text" class="h-12 text-5xl" />
         <span class="block mt-2 text-2xl">I'm wheat</span>
@@ -78,7 +87,9 @@ onMounted(() => {
     <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000 z-100" />
 
     <!-- Clouds -->
-    <div class="relative z-10 h-screen bg-gradient-to-b from-wwy-200 to-wwy-200" />
+    <div class="relative z-10 flex min-h-screen bg-gradient-to-b from-wwy-200 to-wwy-200 place-items-center">
+      <ListPosts />
+    </div>
     <div class="relative z-10 h-screen bg-gradient-to-b from-wwy-200 to-wwy-250" />
     <div class="relative z-10 h-screen bg-gradient-to-b from-wwy-250 to-wwy-275" />
 
@@ -90,9 +101,8 @@ onMounted(() => {
       <img src="/images/cloud-3.svg" data-rellax-speed="-1.5" class="clouds parallax">
       <img src="/images/cloud-2.svg" data-rellax-speed="-1" class="clouds parallax">
       <img src="/images/cloud-1.svg" class="absolute z-10 -top-1">
-      <Rain :class="{ 'opacity-0': !isBelowClouds }" class="transition-opacity duration-1000" />
+      <Rain :class="{ 'opacity-0': isBelowTrees }" class="transition-opacity duration-1000" />
     </div>
-
 
     <div class="h-screen bg-gradient-to-b from-wwy-375 to-wwy-400" />
 
@@ -110,7 +120,7 @@ onMounted(() => {
 
     <!-- Water -->
     <div class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-500" />
-    <div class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-600" />
+    <div ref="trees" class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-600" />
     <div class="relative h-screen bg-gradient-to-b from-wwy-600 to-wwy-700">
       <Ripples />
     </div>
