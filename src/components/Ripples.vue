@@ -1,10 +1,14 @@
 <script setup='props' lang='ts'>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { createRipples } from '~/logics/ripples'
 
 const el = ref()
 
-createRipples(el)
+onMounted(() => {
+  if (el.value)
+    createRipples(el.value)
+})
+
 </script>
 
 <template>

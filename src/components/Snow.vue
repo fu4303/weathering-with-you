@@ -1,10 +1,13 @@
 <script setup='props' lang='ts'>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { createSnow } from '~/logics/snow'
 
 const el = ref()
 
-createSnow(el)
+onMounted(() => {
+  if (el.value)
+    createSnow(el.value)
+})
 </script>
 
 <template>

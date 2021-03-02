@@ -1,5 +1,5 @@
 import { Ref } from 'vue'
-import { useContext2D } from '~/logics/ctx'
+import { useContext2D } from '~/logics/useCanvas'
 import { randomInt, lerp, normalizeVector, scaleVector, between, Vector2D } from '~/logics/util'
 
 interface RainOptions {
@@ -29,7 +29,7 @@ const DEFAULT_OPTIONS: RainOptions = {
   alpha: [0.025, 0.15],
 }
 
-export function createRain(canvas: Ref<HTMLCanvasElement>, options: RainOptions = DEFAULT_OPTIONS) {
+export function createRain(canvas: HTMLCanvasElement, options: RainOptions = DEFAULT_OPTIONS) {
   const drops: Drop[] = []
 
   const initDrops = () => {
@@ -52,7 +52,7 @@ export function createRain(canvas: Ref<HTMLCanvasElement>, options: RainOptions 
     drop.y = randomInt(-drop.l, 0)
   }
 
-  const { start, width, height } = useContext2D(canvas, {
+  const { resume, width, height } = useContext2D(canvas, {
     tick(dt) {
       for (let i = drops.length - 1; i >= 0; --i) {
         const drop = drops[i]
@@ -96,5 +96,5 @@ export function createRain(canvas: Ref<HTMLCanvasElement>, options: RainOptions 
   })
 
   initDrops()
-  start()
+  resume()
 }

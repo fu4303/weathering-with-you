@@ -1,7 +1,7 @@
 dependencies:
   '@types/rellax': 1.7.3
   '@types/scroll-to-element': 2.0.0
-  '@vueuse/core': 4.1.1_vue@3.0.5
+  '@vueuse/core': 4.3.1_vue@3.0.5
   '@vueuse/head': 0.2.3_vue@3.0.5
   dayjs: 1.10.4
   nprogress: 0.2.0
@@ -1681,15 +1681,15 @@ packages:
   /@vue/shared/3.0.5:
     resolution:
       integrity: sha512-gYsNoGkWejBxNO6SNRjOh/xKeZ0H0V+TFzaPzODfBjkAIb0aQgBuixC1brandC/CDJy1wYPwSoYrXpvul7m6yw==
-  /@vueuse/core/4.1.1_vue@3.0.5:
+  /@vueuse/core/4.3.1_vue@3.0.5:
     dependencies:
-      '@vueuse/shared': 4.1.1_vue@3.0.5
-      vue-demi: 0.6.0_vue@3.0.5
+      '@vueuse/shared': 4.3.1_vue@3.0.5
+      vue-demi: 0.7.1_vue@3.0.5
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
-      integrity: sha512-a+fu7FUHDzLpgcOGwbgyNZXLbm85NHEf4jkPkyqTtqHEHqU4aVbdyM0Vzl90PpFEDe92pJjoYJnZEQQgq9nEHw==
+      integrity: sha512-/UkL83zSkE1qb1aqidSjUxADB9ggRnchXe5CliqAb5Ak7Rt9IfdUC4zfvvAtwlIgNvT1Fo9YCtgRma4H2TVLEQ==
   /@vueuse/head/0.2.3_vue@3.0.5:
     dependencies:
       vue: 3.0.5
@@ -1697,14 +1697,14 @@ packages:
       vue: '>=3'
     resolution:
       integrity: sha512-bAFZyUlT6+CVIwMcUw3TrtuhG/BfjS+UV5T8oH30tGPnVvqIsNuRCnNt9EbVd1GxHRDZD0K41515B5NiXPt84A==
-  /@vueuse/shared/4.1.1_vue@3.0.5:
+  /@vueuse/shared/4.3.1_vue@3.0.5:
     dependencies:
-      vue-demi: 0.6.0_vue@3.0.5
+      vue-demi: 0.7.1_vue@3.0.5
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
-      integrity: sha512-M1bNwOaJZypu/AUYKrOU87pQLRp8VgMYHQyL1hVc6V3hi3ZcUBSjZuyFVaUdxGk0OeA0NPzHoYbByTMrpxElug==
+      integrity: sha512-K2F+z16BqcOtEp/pJEK7cPvOMsgBChGGfx0UAatXt8Awk+b4Vi6L6//KclAV1N7w+e9u2kJlC1Ld8GqdY5ZxRg==
   /abab/2.0.5:
     dev: true
     resolution:
@@ -5336,16 +5336,20 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-rbuAYZE8T0jNOUykkyfjiiKmz4MpW2KqzHO8++WCCDXyxzIg56ICQ/B6NLZzVpWyk0iSKiUKr2k8NMkmDlZAQQ==
-  /vue-demi/0.6.0_vue@3.0.5:
+  /vue-demi/0.7.1_vue@3.0.5:
     dependencies:
       vue: 3.0.5
     dev: false
     hasBin: true
     peerDependencies:
+      '@vue/composition-api': ^1.0.0-beta.1
       vue: ^2.6.0 || >=3.0.0-rc.1
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
     requiresBuild: true
     resolution:
-      integrity: sha512-8GEJa0mHJpYJeGeq5fD1pJct2kfdl30PHfmL1NaJ97mgKPyKojlIRt/3inGBK4Y0ylCI6T5vOo3chwpqDOq/Hw==
+      integrity: sha512-cJ3QnpcbIqdpeV3NnNgSDwneCJifvHct+6JNvfYn/49geK/uv5VJicZDvyg20guNhz+DZmUHBHyRQTJ32lSC2g==
   /vue-eslint-parser/7.3.0_eslint@7.20.0:
     dependencies:
       debug: 4.3.1
@@ -5755,7 +5759,7 @@ specifiers:
   '@vitejs/plugin-vue': ^1.1.4
   '@vue/compiler-sfc': ^3.0.5
   '@vue/server-renderer': ^3.0.5
-  '@vueuse/core': ^4.1.1
+  '@vueuse/core': ^4.3.1
   '@vueuse/head': ^0.2.3
   cross-env: ^7.0.3
   dayjs: ^1.10.4

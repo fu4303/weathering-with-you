@@ -1,5 +1,5 @@
 import { Ref } from 'vue'
-import { useContext2D } from '~/logics/ctx'
+import { useContext2D } from '~/logics/useCanvas'
 import { randomInt, lerp, normalizeVector, scaleVector, between, Vector2D } from '~/logics/util'
 
 interface SnowOptions {
@@ -30,7 +30,7 @@ const DEFAULT_OPTIONS: SnowOptions = {
   alpha: [0.05, 0.15],
 }
 
-export function createSnow(canvas: Ref<HTMLCanvasElement>, options: SnowOptions = DEFAULT_OPTIONS) {
+export function createSnow(canvas: HTMLCanvasElement, options: SnowOptions = DEFAULT_OPTIONS) {
   const snowflakes: Snowflake[] = []
 
   const initDrops = () => {
@@ -54,7 +54,7 @@ export function createSnow(canvas: Ref<HTMLCanvasElement>, options: SnowOptions 
     snowflake.size = between(options.size[0], options.size[1])
   }
 
-  const { start, width, height } = useContext2D(canvas, {
+  const { resume, width, height } = useContext2D(canvas, {
     tick(dt) {
       for (let i = snowflakes.length - 1; i >= 0; --i) {
         const snowflake = snowflakes[i]
@@ -66,7 +66,7 @@ export function createSnow(canvas: Ref<HTMLCanvasElement>, options: SnowOptions 
       }
     },
     render(ctx) {
-      ctx.clearRect(0, 0, width.value, height.value)
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
       ctx.save()
       ctx.fillStyle = options.color
       ctx.lineWidth = between(options.thickness[0], options.thickness[1])
@@ -83,16 +83,10 @@ export function createSnow(canvas: Ref<HTMLCanvasElement>, options: SnowOptions 
         normalizeVector(v)
         scaleVector(v, -snowflake.l)
 
-        const x2 = Math.round(x1 + v.x)
-        const y2 = Math.round(y1 + v.y)
-
         ctx.globalAlpha = snowflake.a
         ctx.beginPath()
         ctx.moveTo(x1, y1)
-        ctx.ellipse(snowflake.x, snowflake.y, snowflake.size, snowflake.size, Math.PI / 2, 0, 2 * Math.PI)
-
-        // ctx.
-        ctx.lineTo(x2, y2)
+        ctx.ellipse(snowflake.x, snowflake.y, snowflake.size, Math.floor(snowflake.size), Math.PI / 2, 0, 2 * Math.PI)
         ctx.fill()
         ctx.closePath()
       }
@@ -101,5 +95,5 @@ export function createSnow(canvas: Ref<HTMLCanvasElement>, options: SnowOptions 
   })
 
   initDrops()
-  start()
+  resume()
 }

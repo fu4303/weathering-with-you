@@ -1,5 +1,5 @@
 import { Ref, watch, ref } from 'vue'
-import { useWindowSize } from '@vueuse/core'
+import { useWindowSize, tryOnUnmounted, tryOnMounted } from '@vueuse/core'
 
 const FIXED_STEP = 16
 
@@ -10,6 +10,7 @@ export interface UseContext2DOptions {
 
 export function useContext2D(canvas: Ref<HTMLCanvasElement>, { render, tick }: UseContext2DOptions) {
   const ctx = ref<CanvasRenderingContext2D>()
+  const isActive = ref(false)
   const { width, height } = useWindowSize()
 
   let lastTime = 0
@@ -27,6 +28,9 @@ export function useContext2D(canvas: Ref<HTMLCanvasElement>, { render, tick }: U
   }, { immediate: true })
 
   const update = (time: number) => {
+    if (!isActive.value)
+      return
+
     let dt = time - lastTime
     lastTime = time
 
@@ -44,12 +48,14 @@ export function useContext2D(canvas: Ref<HTMLCanvasElement>, { render, tick }: U
 
   const start = () => {
     if (ctx.value) {
+      isActive.value = true
       render(ctx.value!)
       requestAnimationFrame(update)
     }
     else {
       const stop = watch(ctx, () => {
         if (ctx.value) {
+          isActive.value = true
           render(ctx.value!)
           requestAnimationFrame(update)
           stop()
@@ -57,6 +63,10 @@ export function useContext2D(canvas: Ref<HTMLCanvasElement>, { render, tick }: U
       })
     }
   }
+
+  tryOnUnmounted(() => {
+    isActive.value = false
+  })
 
   return {
     width,
