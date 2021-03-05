@@ -1,4 +1,5 @@
 import { Fn } from '@vueuse/core'
+import { rbeta } from './maths'
 
 export interface Vector2D {
   x: number
@@ -33,4 +34,8 @@ export function ease(n: number) {
 
 export function degToRad(deg: number) {
   return deg * Math.PI / 180
+}
+
+export function randomBeta(alpha: number, beta: number, min: number, max: number) {
+  return Math.floor((rbeta(alpha, beta) * (max - min)) + min)
 }

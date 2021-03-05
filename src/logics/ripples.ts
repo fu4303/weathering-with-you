@@ -1,13 +1,15 @@
-import { Ref } from 'vue'
 import { useContext2D } from '~/logics/useCanvas'
-import { ease, randomInt, between, degToRad } from '~/logics/util'
+import { ease, randomInt, between, degToRad, randomBeta } from '~/logics/util'
+
+// for (let i = 0; i < 15; ++i) {
+//   console.log('Rbeta', randomBeta(1, 2, 0, 1080))
+// }
 
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 const GRAVITY = 0.5
-const INITIAL_VELOCITY = -1
 
 interface RippleOptions {
   count: number
@@ -43,12 +45,12 @@ interface Ripple {
 }
 
 const DEFAULT_OPTIONS: RippleOptions = {
-  count: 35,
+  count: 50,
   thickness: 3,
   color: '#479DA8',
   rotation: 8,
   fadeDuration: [1500, 200],
-  rippleDuration: [4000, 5000],
+  rippleDuration: [2000, 3000],
   rippleSize: [150, 350],
 }
 
@@ -66,7 +68,7 @@ export function createRipples(canvas: HTMLCanvasElement, options: RippleOptions 
   }
 
   const resetRipple = (ripple: Partial<Ripple>) => {
-    ripple.y = randomInt(0, height.value)
+    ripple.y = randomBeta(1, 2.25, 10, height.value)
     ripple.x = randomInt(-50, width.value + 50)
 
     ripple.distance = ripple.y / height.value
@@ -87,7 +89,7 @@ export function createRipples(canvas: HTMLCanvasElement, options: RippleOptions 
     ripple.dropYV = Array(drops).fill(0).map(() => between(-3, -4))
     ripple.dropY = Array(drops).fill(ripple.y)
     ripple.dropX = Array(drops).fill(0).map(() => between(-3, 3))
-    ripple.dropSize = Array(drops).fill(0).map(() => between(1, 3))
+    ripple.dropSize = Array(drops).fill(0).map(() => between(1, 3) * ripple.distance!)
     ripple.dropAlpha = Array(drops).fill(0)
     ripple.dropFadeStart = Array(drops).fill(null)
   }
@@ -161,7 +163,7 @@ export function createRipples(canvas: HTMLCanvasElement, options: RippleOptions 
 
       ctx.restore()
     },
-    tick(dt) {
+    tick() {
       for (let i = ripples.length - 1; i >= 0; --i) {
         const ripple = ripples[i]
         const now = Date.now()
