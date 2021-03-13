@@ -10,11 +10,11 @@ body,
 
 html {
   scroll-behavior: smooth;
+  @apply bg-white text-gray-800;
 }
 
 html.dark {
-  @apply bg-gruvbox-800 text-gruvbox-200;
-  /* background: #222; */
+  @apply bg-wheat-900 text-gruvbox-200;
 }
 
 #nprogress {
@@ -33,11 +33,15 @@ html.dark {
   height: 2px;
 }
 
-.btn {
-  @apply inline-block px-4 py-1 text-white bg-teal-600 rounded cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+::-webkit-scrollbar {
+  width: 0.75rem;
+  background: transparent;
 }
 
-.icon-btn {
-  @apply inline-block transition duration-200 ease-in-out opacity-75 cursor-pointer select-none hover:opacity-100 hover:text-teal-600;
-  font-size: 0.9em;
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .48);
+}
+
+::-webkit-resizer {
+  padding: 1rem;
 }

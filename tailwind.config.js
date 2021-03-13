@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        wheat: {
+          900: '#1D1C23',
+        },
         wwy: {
           50: '#8F71A2',
           100: '#4E3B5A',
@@ -22,6 +25,10 @@ module.exports = {
           500: '#313d38',
           600: '#284D49',
           700: '#091010',
+        },
+        leaves: {
+          100: '#243730',
+          200: '#21342B',
         },
         gruvbox: {
           100: '#fbf1c7',

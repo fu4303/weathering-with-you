@@ -51,15 +51,13 @@ onMounted(() => {
 
 <template>
   <main class="">
-    <Navigation />
-
     <!-- Sky -->
     <div class="relative z-10 grid h-screen overflow-hidden bg-gradient-to-b from-wwy-100 to-wwy-200 place-items-center">
       <div class="relative z-10 w-full p-8 max-w-prose">
         <h1 ref="text" class="h-12 text-5xl" />
         <span class="block mt-2 text-2xl">I'm wheat</span>
         <div class="py-2">
-          <About />
+          <About :blank="true" />
         </div>
         <div class="flex flex-row items-center mt-8 space-x-4">
           <a href="https://github.com/jacobclevenger" target="_blank">
@@ -75,9 +73,7 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
-      <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000" />
       <img src="/images/sky-cloud-1.svg" data-rellax-speed="-1" class="absolute bottom-0 parallax">
-      <Snow :class="{ 'opacity-0': isBelowClouds }" class="transition-opacity duration-1000" />
       <img src="/images/sky-cloud-2.svg" class="absolute -bottom-1">
 
       <div class="absolute opacity-50 bottom-12">
@@ -107,21 +103,43 @@ onMounted(() => {
     <div class="h-screen bg-gradient-to-b from-wwy-375 to-wwy-400" />
 
     <!-- City -->
-    <div class="relative h-screen bg-gradient-to-b from-wwy-400 to-wwy-500 city">
-      <img src="/images/skyline-7.svg" data-rellax-speed="-4.2" class="skyline parallax">
-      <img src="/images/skyline-6.svg" data-rellax-speed="-4" class="skyline parallax">
-      <img src="/images/skyline-5.svg" data-rellax-speed="-3" class="skyline parallax">
-      <img src="/images/skyline-4.svg" data-rellax-speed="-2" class="skyline parallax">
-      <img src="/images/skyline-3.svg" data-rellax-speed="-1.3" class="skyline parallax">
-      <img src="/images/skyline-2.svg" data-rellax-speed="-1" class="skyline parallax">
-      <div class="absolute bottom-0 w-full h-6 z-2 bg-wwy-500" />
-      <img src="/images/skyline-1.svg" class="absolute bottom-0 z-1">
+    <div class="relative bg-wwy-600">
+      <div class="relative h-screen z-2 bg-gradient-to-b from-wwy-400 to-wwy-500 city">
+        <img src="/images/skyline-7.svg" data-rellax-speed="-4.2" class="skyline parallax">
+        <img src="/images/skyline-6.svg" data-rellax-speed="-4" class="skyline parallax">
+        <img src="/images/skyline-5.svg" data-rellax-speed="-3" class="skyline parallax">
+        <img src="/images/skyline-4.svg" data-rellax-speed="-2" class="skyline parallax">
+        <img src="/images/skyline-3.svg" data-rellax-speed="-1.3" class="skyline parallax">
+        <img src="/images/skyline-2.svg" data-rellax-speed="-1" class="skyline parallax">
+        <div class="absolute bottom-0 w-full h-6 z-2 bg-wwy-500" />
+        <img src="/images/skyline-1.svg" class="absolute bottom-0 z-1">
+      </div>
+      <div class="absolute bottom-0 w-full z-5 bg-wwy-500" style="top: 100vh">
+        <div class="bg-wwy-500 h-1/2" />
+        <div class="bg-wwy-600 h-1/2" />
+      </div>
+      <div style="margin-top: -50vh" class="relative bottom-0 z-10 w-full parallax" data-rellax-speed="9">
+        <div class="relative z-10 w-full">
+          <img src="/images/leaves-top-2.svg" class="absolute top-0 z-1">
+          <img src="/images/leaves-top-1.svg" class="relative top-0 -mb-1 z-1">
+        </div>
+        <div class="relative z-10 h-screen bg-gradient-to-b from-leaves-100 to-leaves-200" />
+        <div class="relative z-10 w-full bg-wwy-600">
+          <img src="/images/leaves-bottom-2.svg" class="absolute bottom-0 z-1">
+          <img src="/images/leaves-bottom-1.svg" class="relative bottom-0 -mt-1 z-1">
+        </div>
+      </div>
     </div>
 
+    <!-- <div class="relative">
+      <img src="/images/leaves-bottom-2.svg" data-rellax-speed="-2" class="absolute bottom-0 z-1 parallax">
+      <img src="/images/leaves-bottom-1.svg" data-rellax-speed="-1" class="absolute bottom-0 z-1 parallax">
+    </div> -->
+
     <!-- Water -->
-    <div class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-500" />
-    <div ref="trees" class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-600" />
-    <div class="relative h-screen bg-gradient-to-b from-wwy-600 to-wwy-700">
+    <!-- <div class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-500" /> -->
+    <!-- <div ref="trees" class="relative h-screen bg-gradient-to-b from-wwy-500 to-wwy-600" /> -->
+    <div class="relative z-10 h-screen bg-gradient-to-b from-wwy-600 to-wwy-700">
       <Ripples />
     </div>
     <!-- <router-view />

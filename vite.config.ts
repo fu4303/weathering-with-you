@@ -13,7 +13,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Prism from 'markdown-it-prism'
 import anchor from 'markdown-it-anchor'
+// @ts-ignore
+import toc from 'markdown-it-table-of-contents'
 import { slugify } from './scripts/slugify'
+
+import { containerPlugin } from './plugins/markdown/container'
 
 export default defineConfig({
   resolve: {
@@ -47,15 +51,30 @@ export default defineConfig({
     }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-    Layouts(),
+    Layouts({
+      importMode: () => 'sync',
+    }),
 
     // https://github.com/antfu/vite-plugin-md
     Markdown({
-      wrapperClasses: 'prose prose-sm text-left',
+      wrapperComponent: 'post',
+      wrapperClasses: 'prose text-left',
       headEnabled: true,
+      markdownItOptions: {
+        quotes: '""\'\'',
+      },
       markdownItSetup(md) {
         // https://prismjs.com/
         md.use(Prism)
+        md.use(anchor, {
+          slugify,
+          permalink: true,
+          permalinkBefore: true,
+          permalinkSymbol: '#',
+          permalinkAttrs: () => ({ 'aria-hidden': true }),
+        })
+        md.use(containerPlugin)
+        md.use(toc)
       },
     }),
 
@@ -82,7 +101,7 @@ export default defineConfig({
 
     // https://github.com/antfu/vite-plugin-windicss
     ...WindiCSS({
-      safelist: 'prose prose-sm m-auto',
+      safelist: 'prose prose-2xl prose-xl prose-lg prose-sm m-auto',
       searchDirs: ['src', 'pages'],
     }),
 

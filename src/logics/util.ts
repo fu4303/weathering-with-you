@@ -1,10 +1,5 @@
-import { Fn } from '@vueuse/core'
 import { rbeta } from './maths'
-
-export interface Vector2D {
-  x: number
-  y: number
-}
+import { Vector2D } from '~/types'
 
 export function randomInt(min: number, max: number) {
   return Math.floor((Math.random() * (max - min)) + min)
